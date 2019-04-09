@@ -671,7 +671,7 @@ class LinRegGDPoisoner(GDPoisoner):
                             eta, beta, sigma, eps, mproc, \
                             trainfile, resfile, \
                             objective, opty, colmap)
-        self.initclf, self.initlam = self.learn_model(self.x,self.y,None)
+        self.initclf, self.initlam = self.learn_model(self.trnx,self.trny,None)
 
     def learn_model(self, x, y, clf):
         if (not clf):
@@ -702,7 +702,7 @@ class LinRegGDPoisoner(GDPoisoner):
         eq7rhs = -(1/n)*np.bmat([[m,             -np.matrix(poisxelem.T)],
                                  [np.matrix(w.T), np.matrix([-1])       ]])
     
-        wbxc = np.linalg.lstsq(eq7lhs,eq7rhs,rcond=None)[0]
+        wbxc = np.linalg.lstsq(eq7lhs,eq7rhs)[0]
         wxc = wbxc[:-1,:-1] # get all but last row
         bxc = wbxc[ -1,:-1] # get last row
         wyc = wbxc[:-1, -1]
