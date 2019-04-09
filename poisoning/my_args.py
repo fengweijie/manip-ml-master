@@ -52,7 +52,7 @@ def setup_argparse():
                             help='output files will be err{model}{outputind}.txt, train{model}{outputind}.txt, test{model}{outputind}.txt')
 
     # model                        
-    parser.add_argument("-m", "--model",default='linreg',\
+    parser.add_argument("-m", "--model",default='ridge',\
                             choices=['linreg','lasso','enet','ridge'],\
                             help="choose linreg for linear regression, lasso for lasso, enet for elastic net, or ridge for ridge")
 
@@ -88,7 +88,7 @@ def setup_argparse():
                             help='enable to allow for multiprocessing support')
 
     # visualize simple case
-    parser.add_argument("-vis",'--visualize',action='store_true',help="visualize dataset")
+    parser.add_argument("-vis",'--visualize',default=True,action='store_true',help="visualize dataset")
 
     return parser
    

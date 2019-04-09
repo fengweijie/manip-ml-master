@@ -5,8 +5,8 @@ import numpy.linalg as la
 
 
 # import my modules
-from my_args import setup_argparse 
-from gd_poisoners import *
+from poisoning.my_args import setup_argparse
+from poisoning.gd_poisoners import *
 
 # ------------------------------------------------------------------------------- 
 # TRIM algorithm
@@ -47,16 +47,17 @@ def robustopt(x, y, count, lam, poiser):
     it+=1
   return clf,w,b,lam,tau
 
+colmap = []
 def open_dataset(f,visualize):
   if visualize:
     rng = np.random.RandomState(1)
     random_state = 1
-    x, y = make_regression(n_samples=300, n_features=1, random_state=random_state, noise=15.0, bias=1.5)
+    x, y = make_regression(n_samples=1000, n_features=1, random_state=random_state, noise=15.0, bias=1.5)
     x = (x-x.min())/(x.max()-x.min())
     y = (y-y.min())/(y.max()-y.min())
 
     plt.plot(x, y, 'k.')
-    colmap = []
+
   else:
     x,y = read_dataset_file(f)
 
